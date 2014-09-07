@@ -335,8 +335,8 @@ class BitcoinConnection(object):
         """
         return dict(self.proxy.decoderawtransaction(hexstring))
 
-    def listsinceblock(self, block_hash):
-        res = self.proxy.listsinceblock(block_hash)
+    def listsinceblock(self, block_hash, minconf=1):
+        res = self.proxy.listsinceblock(block_hash, minconf)
         res['transactions'] = [TransactionInfo(**x) for x in res['transactions']]
         return res
 
